@@ -1,18 +1,50 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+typedef struct Restaurand
+{
+    char denumirea[50];
+  char adresa[50];
+  int telefonul;
+  int categoria;
+  int nr_de_locuri;
+  int specializarea;
+} Restaurand;
 
-# Other files and folders
-.settings/
+typedef struct NodeList
+{
+    Restaurand * value;
+    struct NodeList *next;
+}NodeList;
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+typedef struct List
+{
+    NodeList * head;
+    NodeList * tail;
+    size_t size;
+} List;
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+
+NodeList * NodeList_create(Restaurand * value);
+void NodeList_delete(NodeList * node);
+
+
+List * List_create();
+void List_clear(List * list);
+void List_delete(List * list);
+void List_print(List * list);
+void List_push(List * list,NodeList * node);
+void List_push_front(List *list,Restaurand * value);
+void List_push_back(List * list,Restaurand * value);
+void List_insert(List * list, size_t id, Restaurand * value);
+void List_insert_after(List * list, size_t id, Restaurand *value);
+void List_insert_before(List * list, size_t id, Restaurand *value);
+void List_element_delete(List *list, size_t id);
+void List_save_to_file(List * list, const char * file_name);
+List * List_load_from_file(const char * file_name);
+int List_size(List * list);
+void Read_Info(List * list);
+NodeList * List_node_search(List * list, size_t id);
+void Modify_Info_Element(List * list, size_t id);
+void List_swap_data(List * list, size_t id1, size_t id2);
+List * List_divide(List * list);
+List * List_merge(List *list1, List * list2);
+NodeList* LastElement(List* list);
+void Sort_List(List * list);
